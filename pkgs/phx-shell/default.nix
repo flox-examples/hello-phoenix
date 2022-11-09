@@ -7,9 +7,6 @@ mkShell {
     ++ lib.optionals stdenv.isDarwin (with pkgs.darwin.apple_sdk.frameworks; [ CoreFoundation CoreServices ]);
   shellHook = ''
     # Generic shell variables
-    export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
-    export LC_ALL="en_US.UTF-8"
-    export LC_CTYPE="en_US.UTF-8"
 
     # Postgres environment variables
     export PGDATA=$PWD/postgres_data
