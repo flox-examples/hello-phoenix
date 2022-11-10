@@ -1,11 +1,10 @@
-{pkgs, stdenv, lib, mkShell, ...}:
+{pkgs, stdenv, lib, inputs, }:
 
-mkShell {
-  name = "phoenix-shell";
-  buildInputs = [ pkgs.postgresql_14 pkgs.elixir pkgs.jq ]
-    ++ lib.optional stdenv.isLinux pkgs.inotify-tools
-    ++ lib.optionals stdenv.isDarwin (with pkgs.darwin.apple_sdk.frameworks; [ CoreFoundation CoreServices ]);
-  shellHook = ''
+with inputs.floxpkgs.inputs.nixpkgs.evalCatalog.${pkgs.system};
+lib.mkEnv {
+  packages = [ stable.postgresql_14.latest stable.elixir_1_12 stable.jq ];
+  env = {};
+  postShellHook = ''
     # Generic shell variables
 
     # Postgres environment variables
