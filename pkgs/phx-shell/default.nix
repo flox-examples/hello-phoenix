@@ -2,7 +2,7 @@
 
 with inputs.floxpkgs.inputs.nixpkgs.evalCatalog.${pkgs.system};
 lib.mkEnv {
-  packages = [ stable.postgresql_14.latest stable.elixir_1_12 stable.jq ];
+  packages = [ stable.postgresql_14.latest stable.elixir_1_12 stable.jq pkgs.mix2nix ];
   env = {};
   postShellHook = ''
     # Generic shell variables
